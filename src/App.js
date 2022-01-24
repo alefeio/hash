@@ -29,17 +29,27 @@ function App() {
   }
 
   function play(cell) {
-    player === 1 ? setPlayer1([...player1, cell]) : setPlayer2([...player2, cell]);
+    const array = [];
+    array.push(cell);
+
+    if (player === 1) {
+      setPlayer1([...player1, cell]);
+      player1.map(p => array.push(p));
+    } else {
+      setPlayer2([...player2, cell]);
+      player2.map(p => array.push(p));
+    }
+
+    verify(array);
+
     alterTurn();
     console.log('return play: ', player)
   }
 
-  function verify() {
+  function verify(arr) {
     correctanswers.map(res => {
+      const r = res.filter(r => arr.includes(r));
 
-      const array = player === 1 ? player1 : player2;
-
-      const r = res.filter(r => array.includes(r));
       if (r.length === 3) {
         r[0] === 0 && r[1] === 1 && r[2] === 2 && setStyleline('success');
         r[0] === 3 && r[1] === 4 && r[2] === 5 && setStyleline('success2');
@@ -79,10 +89,6 @@ function App() {
       [2, 4, 6],
     ])
   }, []);
-
-  useEffect(() => {
-    verify();
-  }, [player, player1, player2])
 
   return (
     <div className="App-header">
