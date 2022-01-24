@@ -1,5 +1,5 @@
 import "./App.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 
 function App() {
   const [player, setPlayer] = useState(1);
@@ -10,6 +10,7 @@ function App() {
   const [position, setPosition] = useState([]);
   const [correctanswers, setCorrectanswers] = useState([]);
   const [styleLine, setStyleline] = useState('');
+  const [start, setStart] = useState(false);
 
   function handlePosition(cell, type) {
     const obj = position;
@@ -43,14 +44,13 @@ function App() {
     verify(array);
 
     alterTurn();
-    console.log('return play: ', player)
   }
 
   function verify(arr) {
     correctanswers.map(res => {
       const r = res.filter(r => arr.includes(r));
 
-      if (r.length === 3) {
+      if (r.length >= 3) {
         r[0] === 0 && r[1] === 1 && r[2] === 2 && setStyleline('success');
         r[0] === 3 && r[1] === 4 && r[2] === 5 && setStyleline('success2');
         r[0] === 6 && r[1] === 7 && r[2] === 8 && setStyleline('success3');
@@ -59,13 +59,15 @@ function App() {
         r[0] === 2 && r[1] === 5 && r[2] === 8 && setStyleline('success6');
         r[0] === 0 && r[1] === 4 && r[2] === 8 && setStyleline('success7');
         r[0] === 2 && r[1] === 4 && r[2] === 6 && setStyleline('success8');
-        setVictory(`Player ${player}`);
+        setVictory(`Jogador ${player} venceu!`);
+      } else {
+        const numberOfMoves = position.filter(p => p.type === '');
+        if (!numberOfMoves.length) setVictory('Deu velha!');
       }
-      console.log('return: ', r)
     });
   }
 
-  useEffect(() => {
+  function getStart() {
     setPosition([
       { cell: 0, type: '' },
       { cell: 1, type: '' },
@@ -77,7 +79,17 @@ function App() {
       { cell: 7, type: '' },
       { cell: 8, type: '' },
     ]);
-    setTurn('x');
+    setPlayer(1)
+    setVictory('')
+    setTurn('')
+    setPlayer1([])
+    setPlayer2([])
+    setStyleline('')
+    setStart(false)
+  }
+
+  useEffect(() => {
+    getStart();
     setCorrectanswers([
       [0, 1, 2],
       [3, 4, 5],
@@ -92,8 +104,13 @@ function App() {
 
   return (
     <div className="App-header">
-      {victory && <h1>Victory: {victory}</h1>}
-      <div className="grid-board">
+      {victory &&
+        <Fragment>
+          <h1>{victory}</h1>
+          <button className="btn1" onClick={() => getStart()}>Jogar novamente</button>
+        </Fragment>
+      }
+      {start ? <div className="grid-board">
         {styleLine && <span className={styleLine}></span>}
         {position.map((pos, index) => (
           pos.type
@@ -108,7 +125,15 @@ function App() {
               </button>}
             </div>
         ))}
-      </div>
+      </div> :
+        <Fragment>
+          <h1>Escolha para começar:</h1>
+          <div>
+            <img src="assets/images/o.svg" onClick={() => { setTurn('o'); setStart(true) }} />
+            <img src="assets/images/x.svg" onClick={() => { setTurn('x'); setStart(true) }} />
+          </div>
+        </Fragment>
+      }
     </div>
   );
 }
