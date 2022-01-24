@@ -86,7 +86,7 @@ function App() {
 
   return (
     <div className="App-header">
-      {victory && <div>Victory: {victory}</div>}
+      {victory && <h1>Victory: {victory}</h1>}
       <div className="grid-board">
         {styleLine && <span className={styleLine}></span>}
         {position.map((pos, index) => (
