@@ -64,8 +64,8 @@ function App() {
         r[0] === 2 && r[1] === 4 && r[2] === 6 && setStyleline('success8');
         return false;
       }
-      !numberOfMoves.length && setVictory('Deu velha!');
     });
+    !numberOfMoves.length && setVictory('Deu velha!');
   }
 
   function getStart() {
