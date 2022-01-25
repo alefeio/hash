@@ -3,8 +3,8 @@ import { useState, useEffect, Fragment } from "react";
 
 function App() {
   const [player, setPlayer] = useState(1);
-  const [victory, setVictory] = useState();
-  const [turn, setTurn] = useState();
+  const [victory, setVictory] = useState('');
+  const [turn, setTurn] = useState('');
   const [player1, setPlayer1] = useState([]);
   const [player2, setPlayer2] = useState([]);
   const [position, setPosition] = useState([]);
@@ -30,8 +30,7 @@ function App() {
   }
 
   function play(cell) {
-    const array = [];
-    array.push(cell);
+    const array = [cell];
 
     if (player === 1) {
       setPlayer1([...player1, cell]);
@@ -41,16 +40,20 @@ function App() {
       player2.map(p => array.push(p));
     }
 
-    verify(array);
+    array.length >= 3 && verify(array);
 
     alterTurn();
   }
 
   function verify(arr) {
+    console.log('verify')
+    const numberOfMoves = position.filter(p => p.type === '');
+    let r = []
     correctanswers.map(res => {
-      const r = res.filter(r => arr.includes(r));
+      r = res.filter(r => arr.includes(r));
 
       if (r.length >= 3) {
+        setVictory(`Jogador ${player} venceu!`);
         r[0] === 0 && r[1] === 1 && r[2] === 2 && setStyleline('success');
         r[0] === 3 && r[1] === 4 && r[2] === 5 && setStyleline('success2');
         r[0] === 6 && r[1] === 7 && r[2] === 8 && setStyleline('success3');
@@ -59,11 +62,9 @@ function App() {
         r[0] === 2 && r[1] === 5 && r[2] === 8 && setStyleline('success6');
         r[0] === 0 && r[1] === 4 && r[2] === 8 && setStyleline('success7');
         r[0] === 2 && r[1] === 4 && r[2] === 6 && setStyleline('success8');
-        setVictory(`Jogador ${player} venceu!`);
-      } else {
-        const numberOfMoves = position.filter(p => p.type === '');
-        if (!numberOfMoves.length) setVictory('Deu velha!');
+        return false;
       }
+      !numberOfMoves.length && setVictory('Deu velha!');
     });
   }
 
@@ -105,10 +106,10 @@ function App() {
   return (
     <div className="App-header">
       {victory &&
-        <Fragment>
+        <div className="end">
           <h1>{victory}</h1>
           <button className="btn1" onClick={() => getStart()}>Jogar novamente</button>
-        </Fragment>
+        </div>
       }
       {start ? <div className="grid-board">
         {styleLine && <span className={styleLine}></span>}
@@ -126,13 +127,14 @@ function App() {
             </div>
         ))}
       </div> :
-        <Fragment>
+        <div className="start">
           <h1>Escolha para começar:</h1>
           <div>
             <img src="assets/images/o.svg" onClick={() => { setTurn('o'); setStart(true) }} />
+            <span>ou</span>
             <img src="assets/images/x.svg" onClick={() => { setTurn('x'); setStart(true) }} />
           </div>
-        </Fragment>
+        </div>
       }
     </div>
   );

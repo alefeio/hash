@@ -30,6 +30,40 @@
   color: #61dafb;
 }
 
+.start {
+  text-align: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      cursor: pointer;
+      margin: 0 .5rem;
+    }
+  }
+}
+
+.end {
+  text-align: center;
+  margin: 0 0 1rem;
+
+  h1 {
+    margin: 0;
+  }
+
+  button{
+    border: 0;
+    padding: .5rem;
+    background: #069;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
 .grid-board {
   position: relative;
   display: grid;
@@ -58,15 +92,6 @@
       }
     }
   }
-}
-
-.btn1{
-  border: 0;
-  padding: .5rem;
-  background: #069;
-  border-radius: 4px;
-  color: #fff;
-  font-weight: bold;
 }
 
 .success, .success2, .success3, .success4, .success5, .success6, .success7, .success8 {
