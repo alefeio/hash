@@ -127,108 +127,12 @@ function Tictactoe() {
   }
 
   function playComputer() {
-    const adversary = turn === '0' ? 'x' : '0'
+    const adversary = turn === 'o' ? 'x' : 'o'
     console.log('adversary: ', adversary)
 
     if (!victory) {
-      if (position[0].type === adversary && position[1].type === adversary && position[2].type === '') {
-        console.log('regra 1.1')
-        handlePositionComputer(2)
-      }
-      else if (position[0].type === adversary && position[2].type === adversary && position[1].type === '') {
-        console.log('regra 1.2')
-        handlePositionComputer(1)
-      }
-      else if (position[1].type === adversary && position[2].type === adversary && position[0].type === '') {
-        console.log('regra 1.3')
-        handlePositionComputer(0)
-      }
-      else if (position[3].type === adversary && position[4].type === adversary && position[5].type === '') {
-        console.log('regra 1.4')
-        handlePositionComputer(5)
-      }
-      else if (position[3].type === adversary && position[5].type === adversary && position[4].type === '') {
-        console.log('regra 1.5')
-        handlePositionComputer(4)
-      }
-      else if (position[4].type === adversary && position[5].type === adversary && position[3].type === '') {
-        console.log('regra 1.6')
-        handlePositionComputer(3)
-      }
-      else if (position[6].type === adversary && position[7].type === adversary && position[8].type === '') {
-        console.log('regra 1.7')
-        handlePositionComputer(8)
-      }
-      else if (position[6].type === adversary && position[8].type === adversary && position[7].type === '') {
-        console.log('regra 1.8')
-        handlePositionComputer(7)
-      }
-      else if (position[7].type === adversary && position[8].type === adversary && position[6].type === '') {
-        console.log('regra 1.9')
-        handlePositionComputer(6)
-      }
-      else if (position[0].type === adversary && position[3].type === adversary && position[6].type === '') {
-        console.log('regra 1.10')
-        handlePositionComputer(6)
-      }
-      else if (position[0].type === adversary && position[6].type === adversary && position[3].type === '') {
-        console.log('regra 1.11')
-        handlePositionComputer(3)
-      }
-      else if (position[3].type === adversary && position[6].type === adversary && position[0].type === '') {
-        console.log('regra 1.12')
-        handlePositionComputer(0)
-      }
-      else if (position[1].type === adversary && position[4].type === adversary && position[7].type === '') {
-        console.log('regra 1.13')
-        handlePositionComputer(7)
-      }
-      else if (position[1].type === adversary && position[7].type === adversary && position[4].type === '') {
-        console.log('regra 1.14')
-        handlePositionComputer(4)
-      }
-      else if (position[4].type === adversary && position[7].type === adversary && position[1].type === '') {
-        console.log('regra 1.15')
-        handlePositionComputer(1)
-      }
-      else if (position[2].type === adversary && position[5].type === adversary && position[8].type === '') {
-        console.log('regra 1.16')
-        handlePositionComputer(8)
-      }
-      else if (position[2].type === adversary && position[8].type === adversary && position[5].type === '') {
-        console.log('regra 1.17')
-        handlePositionComputer(5)
-      }
-      else if (position[5].type === adversary && position[8].type === adversary && position[2].type === '') {
-        console.log('regra 1.18')
-        handlePositionComputer(2)
-      }
-      else if (position[0].type === adversary && position[4].type === adversary && position[8].type === '') {
-        console.log('regra 1.19')
-        handlePositionComputer(8)
-      }
-      else if (position[0].type === adversary && position[8].type === adversary && position[4].type === '') {
-        console.log('regra 1.20')
-        handlePositionComputer(4)
-      }
-      else if (position[4].type === adversary && position[8].type === adversary && position[0].type === '') {
-        console.log('regra 1.21')
-        handlePositionComputer(0)
-      }
-      else if (position[2].type === adversary && position[4].type === adversary && position[6].type === '') {
-        console.log('regra 1.22')
-        handlePositionComputer(6)
-      }
-      else if (position[2].type === adversary && position[6].type === adversary && position[4].type === '') {
-        console.log('regra 1.23')
-        handlePositionComputer(4)
-      }
-      else if (position[4].type === adversary && position[6].type === adversary && position[2].type === '') {
-        console.log('regra 1.24')
-        handlePositionComputer(2)
-      }
 
-      else if ((position[0].type === turn && position[1].type === turn) && position[2].type === '') {
+      if ((position[0].type === turn && position[1].type === turn) && position[2].type === '') {
         console.log('regra 2.1')
         handlePositionComputer(2)
       }
@@ -322,6 +226,103 @@ function Tictactoe() {
       }
       else if ((position[4].type === turn && position[6].type === turn) && position[2].type === '') {
         console.log('regra 2.24')
+        handlePositionComputer(2)
+      }
+
+      else if (position[0].type === adversary && position[1].type === adversary && position[2].type === '') {
+        console.log('regra 1.1')
+        handlePositionComputer(2)
+      }
+      else if (position[0].type === adversary && position[2].type === adversary && position[1].type === '') {
+        console.log('regra 1.2')
+        handlePositionComputer(1)
+      }
+      else if (position[1].type === adversary && position[2].type === adversary && position[0].type === '') {
+        console.log('regra 1.3')
+        handlePositionComputer(0)
+      }
+      else if (position[3].type === adversary && position[4].type === adversary && position[5].type === '') {
+        console.log('regra 1.4')
+        handlePositionComputer(5)
+      }
+      else if (position[3].type === adversary && position[5].type === adversary && position[4].type === '') {
+        console.log('regra 1.5')
+        handlePositionComputer(4)
+      }
+      else if (position[4].type === adversary && position[5].type === adversary && position[3].type === '') {
+        console.log('regra 1.6')
+        handlePositionComputer(3)
+      }
+      else if (position[6].type === adversary && position[7].type === adversary && position[8].type === '') {
+        console.log('regra 1.7')
+        handlePositionComputer(8)
+      }
+      else if (position[6].type === adversary && position[8].type === adversary && position[7].type === '') {
+        console.log('regra 1.8')
+        handlePositionComputer(7)
+      }
+      else if (position[7].type === adversary && position[8].type === adversary && position[6].type === '') {
+        console.log('regra 1.9')
+        handlePositionComputer(6)
+      }
+      else if (position[0].type === adversary && position[3].type === adversary && position[6].type === '') {
+        console.log('regra 1.10')
+        handlePositionComputer(6)
+      }
+      else if (position[0].type === adversary && position[6].type === adversary && position[3].type === '') {
+        console.log('regra 1.11')
+        handlePositionComputer(3)
+      }
+      else if (position[3].type === adversary && position[6].type === adversary && position[0].type === '') {
+        console.log('regra 1.12')
+        handlePositionComputer(0)
+      }
+      else if (position[1].type === adversary && position[4].type === adversary && position[7].type === '') {
+        console.log('regra 1.13')
+        handlePositionComputer(7)
+      }
+      else if (position[1].type === adversary && position[7].type === adversary && position[4].type === '') {
+        console.log('regra 1.14')
+        handlePositionComputer(4)
+      }
+      else if (position[4].type === adversary && position[7].type === adversary && position[1].type === '') {
+        console.log('regra 1.15')
+        handlePositionComputer(1)
+      }
+      else if (position[2].type === adversary && position[5].type === adversary && position[8].type === '') {
+        console.log('regra 1.16')
+        handlePositionComputer(8)
+      }
+      else if (position[2].type === adversary && position[8].type === adversary && position[5].type === '') {
+        console.log('regra 1.17')
+        handlePositionComputer(5)
+      }
+      else if (position[5].type === adversary && position[8].type === adversary && position[2].type === '') {
+        console.log('regra 1.18')
+        handlePositionComputer(2)
+      }
+      else if (position[0].type === adversary && position[4].type === adversary && position[8].type === '') {
+        console.log('regra 1.19')
+        handlePositionComputer(8)
+      }
+      else if (position[0].type === adversary && position[8].type === adversary && position[4].type === '') {
+        console.log('regra 1.20')
+        handlePositionComputer(4)
+      }
+      else if (position[4].type === adversary && position[8].type === adversary && position[0].type === '') {
+        console.log('regra 1.21')
+        handlePositionComputer(0)
+      }
+      else if (position[2].type === adversary && position[4].type === adversary && position[6].type === '') {
+        console.log('regra 1.22')
+        handlePositionComputer(6)
+      }
+      else if (position[2].type === adversary && position[6].type === adversary && position[4].type === '') {
+        console.log('regra 1.23')
+        handlePositionComputer(4)
+      }
+      else if (position[4].type === adversary && position[6].type === adversary && position[2].type === '') {
+        console.log('regra 1.24')
         handlePositionComputer(2)
       }
 
