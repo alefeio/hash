@@ -57,8 +57,6 @@ function Tictactoe() {
 
   // fill the cell with the symbol
   function handlePosition(cell) {
-    console.log('player: ', player)
-    console.log('turn: ', turn)
 
     const obj = position;
 
@@ -77,8 +75,6 @@ function Tictactoe() {
 
   // fill the cell with the symbol
   function handlePositionComputer(cell) {
-    console.log('player: ', player)
-    console.log('turn: ', turn)
 
     const obj = position;
 
@@ -101,7 +97,6 @@ function Tictactoe() {
 
   // checks if there is a win or a draw
   function verify(arr) {
-    console.log('verify')
     const numberOfMoves = position.filter(p => p.type === '');
     let condition = false;
     correctanswers.map(res => {
@@ -128,7 +123,6 @@ function Tictactoe() {
 
   function playComputer() {
     const adversary = turn === 'o' ? 'x' : 'o'
-    console.log('adversary: ', adversary)
 
     if (!victory) {
 
@@ -689,16 +683,11 @@ function Tictactoe() {
   }, []);
 
   useEffect(() => {
-    console.log('alteraplayer: ', player)
-    player === 2 && setTimeout(() => {
-      console.log('positions: ', position)
+    gamemode === 'computer' && player === 2 && setTimeout(() => {
       playComputer()
-    }, 2000)
-  }, [player])
-
-  useEffect(() => {
-    console.log('aleatorio: ', [0,1,2][Math.floor(Math.random() * [0,1,2].length)])
-  }, [])
+    }, 1000)
+    console.log('teste')
+  }, [gamemode === 'computer' && player])
 
   return (
     <div className="App-header">
